@@ -20,6 +20,7 @@ def preprocessing(df):
             
 
 def load_txt(file_no):
+    print('dataset ' + str(file_no))
     path_name = '/u/epw9kz/academic/first_year/ML/project/'
     
     if file_no == 1:
@@ -40,6 +41,6 @@ def load_txt(file_no):
     
     return X_train, X_test, y_train, y_test 
 
-X_train, X_test, y_train, y_test = load_txt(2) 
-print(X_train.shape, X_test.shape, y_train.shape, y_test.shape)
+# X_train, X_test, y_train, y_test = load_txt(1) 
+# print(X_train.shape, X_test.shape, y_train.shape, y_test.shape)
     

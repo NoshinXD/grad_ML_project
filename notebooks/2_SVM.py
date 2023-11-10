@@ -2,8 +2,8 @@ import numpy as np
 from data_loader import load_txt
 from metrics import get_performance_measure, print_metric_score
 
-# import cvxopt
-# import cvxopt.solvers
+import cvxopt
+import cvxopt.solvers
 
 def linear_kernel(x1, x2):
     # print('linear_kernel')
@@ -33,7 +33,7 @@ class SVM:
         self.w = np.zeros(n_features)
         self.b = 0
 
-        # changing_lable_from 0 to -1
+        # changing_lable_from_0_to_minus_1
         y = np.where(y == 0, -1, 1)
 
         if self.kernel == 'linear':
@@ -60,18 +60,17 @@ class SVM:
             return prediction_probability
         else:
             prediction = np.sign(prediction_probability)
-            # changing_lable_from -1 to 0
             prediction = np.where(prediction == -1, 0, 1)
             return prediction
         
-# X_train, X_test, y_train, y_test = load_txt(2) 
+X_train, X_test, y_train, y_test = load_txt(2) 
 
-# clf = SVM(n_iter_=1000)
-# clf.fit(X_train, y_train)
-# y_pred = clf.predict(X_test)
-# y_pred_proba = clf.predict(X_test, probability=True)
-# # y_pred_proba = clf.predict_proba(X_test)
+clf = SVM(n_iter_=1000)
+clf.fit(X_train, y_train)
+y_pred = clf.predict(X_test)
+y_pred_proba = clf.predict(X_test, probability=True)
+# y_pred_proba = clf.predict_proba(X_test)
 
-# accuracy, precison, recall, f1, auc = get_performance_measure(y_test, y_pred, y_pred_proba)
-# print_metric_score('SVM linear', accuracy, precison, recall, f1, auc)
+accuracy, precison, recall, f1, auc = get_performance_measure(y_test, y_pred, y_pred_proba)
+print_metric_score('SVM linear', accuracy, precison, recall, f1, auc)
         
