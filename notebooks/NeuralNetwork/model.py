@@ -15,3 +15,16 @@ class NeuralNetwork(nn.Module):
         out = self.output(out)  # No softmax here (handled in CrossEntropyLoss)
         return out
     
+    def init_weights(self, init_type='xavier'):
+        if init_type == 'normal':
+            init = torch.nn.init.normal_
+        elif init_type == 'xavier':
+            init = torch.nn.init.xavier_uniform_
+        elif init_type == 'kaiming':
+            init = torch.nn.init.kaiming_uniform_
+        
+        for m in self.modules():
+            if isinstance(m, nn.Linear):
+                init(m.weight)
+                if m.bias is not None:
+                    torch.nn.init.constant_(m.bias, 0)
