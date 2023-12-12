@@ -67,6 +67,7 @@ def vectorized_result(j):
 def preprocessing(X):
     pmin, pmax = X.min(), X.max()
     rescaled_image = 255*(X-pmin) / (pmax - pmin)
+    # rescaled_image = rescaled_image / 255
     
     return rescaled_image
     

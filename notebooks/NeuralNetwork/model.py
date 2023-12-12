@@ -15,13 +15,13 @@ class NeuralNetwork(nn.Module):
         out = self.output(out)  # No softmax here (handled in CrossEntropyLoss)
         return out
     
-    def init_weights(self, init_type='xavier'):
+    def init_weights(self, init_type='xavier_uniform'):
         if init_type == 'normal':
             init = torch.nn.init.normal_
-        elif init_type == 'xavier':
+        elif init_type == 'xavier_uniform':
             init = torch.nn.init.xavier_uniform_
-        elif init_type == 'kaiming':
-            init = torch.nn.init.kaiming_uniform_
+        elif init_type == 'xavier_normal':
+            init = torch.nn.init.xavier_normal_
         
         for m in self.modules():
             if isinstance(m, nn.Linear):

@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
-from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.model_selection import train_test_split
 
 def preprocessing(df):
@@ -12,7 +12,7 @@ def preprocessing(df):
 
     # print(df.info())
     # normalizing
-    scaler = MinMaxScaler()
+    scaler = StandardScaler()
     scaler.fit(df)
     df = scaler.transform(df)
 

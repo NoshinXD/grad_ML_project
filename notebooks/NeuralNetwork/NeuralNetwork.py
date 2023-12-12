@@ -6,6 +6,7 @@ import numpy as np
 from sklearn.metrics import accuracy_score, accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
 from sklearn.preprocessing import label_binarize
 from model import NeuralNetwork
+# from dynamic_model import dynamicNeuralNetwork
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -38,25 +39,27 @@ def evaluate_model(model, loader, criterion):
      
     return actuals, predictions, probabilities, model_loss
 
-def runNeuralNetwork(learning_rate=0.001, batch_size=64, num_epochs=5, init_type='xavier'):    
+def runNeuralNetwork(hidden_size=128, learning_rate=0.001, init_type='xavier_uniform'):    
     training_data, validation_data, test_data = load_data()
     train_X, train_y = training_data
     validation_X, validation_y = validation_data
     test_X, test_y = test_data
 
     # preprocessing
-    # train_X = preprocessing(train_X)
-    # validation_X = preprocessing(validation_X)
-    # test_X = preprocessing(test_X)
+    train_X = preprocessing(train_X)
+    validation_X = preprocessing(validation_X)
+    test_X = preprocessing(test_X)
 
     # Hyperparameters
     input_size = train_X.shape[1]  
-    hidden_size = 128  
+    hidden_size = hidden_size  
     num_classes = len(np.unique(train_y))   
-
     learning_rate = learning_rate
-    batch_size = batch_size   
-    num_epochs = num_epochs
+
+    batch_size = 64    
+    num_epochs = 100
+
+    # print('batch_size', batch_size)
 
     train_X = torch.tensor(train_X, dtype=torch.float32)
     train_y = torch.tensor(train_y, dtype=torch.long)
@@ -140,8 +143,8 @@ def runNeuralNetwork(learning_rate=0.001, batch_size=64, num_epochs=5, init_type
         print('Epoch [{}/{}],Loss:{:.4f},Validation Loss:{:.4f},Accuracy:{:.2f},Validation Accuracy:{:.2f}'.format( 
             epoch+1, num_epochs, train_loss, val_loss, train_acc ,val_acc))
 
-    print('mean val accuracy', np.mean(val_accuracies))
-    print('mean val roc score', np.mean(val_rocs))
+    # print('mean val accuracy', np.mean(val_accuracies))
+    # print('mean val roc score', np.mean(val_rocs))
     # train_accuracy, train_roc_score = evaluate_model(model, train_loader)
     # validation_accuracy, validation_roc_score = evaluate_model(model, validation_loader)
 
@@ -155,21 +158,21 @@ def runNeuralNetwork(learning_rate=0.001, batch_size=64, num_epochs=5, init_type
     
     test_roc_score = roc_auc_score(actuals_binarized, test_probabilities, multi_class='ovr')
 
-    print('test accuracy', test_acc)
-    print('test precison', test_prec)
-    print('test recall', test_rec)
-    print('test f1', test_f1)
-    print('test roc score', test_roc_score)
+    # print('test accuracy', test_acc)
+    # print('test precison', test_prec)
+    # print('test recall', test_rec)
+    # print('test f1', test_f1)
+    # print('test roc score', test_roc_score)
 
-    return train_losses, train_accuracies, val_losses, val_accuracies
+    return train_losses, train_accuracies, val_losses, val_accuracies, model, train_loader, test_loader, criterion, num_classes
 
 learning_rate = 0.001
-batch_size = 64    
-num_epochs = 5
+# batch_size = 64    
+# num_epochs = 5
+hidden_size = 128
+init_type = 'xavier_uniform'
 
-# Try different number of hidden units, different weight/bias initializations, different learning rates, and
-# discuss whether they affect the training/testing performa
-train_losses, train_accuracies, val_losses, val_accuracies = runNeuralNetwork(learning_rate, batch_size, num_epochs)
+# train_losses, train_accuracies, val_losses, val_accuracies, model, train_loader, test_loader, criterion, num_classes = runNeuralNetwork(hidden_size, learning_rate, init_type)
 # print(len(train_losses))
 # print(len(train_accuracies))
 # print(len(val_losses))
