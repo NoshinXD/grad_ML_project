@@ -2,7 +2,7 @@ In this project, we implement six models, Logistic Regression, K Nearest Neighbo
 
 We also implement a Neural Network model which can be found inside "notebooks/NeuralNetwork/NeuralNetwork.py". The analysis is done in "notebooks/NeuralNetwork/NN_analysis.ipynb" We use popular MNIST dataset to train and test our model.
 
-As the bonus task, we implemented an AutoEncoder to detech Fraudulent Handwritten Signatures
+As the bonus task, we implemented an AutoEncoder to detech Fraudulent Handwritten Signatures.
 
 To run the models do the following steps:
 
