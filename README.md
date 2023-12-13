@@ -5,5 +5,5 @@ We also implement a Neural Network model which can be found inside "notebooks/Ne
 To run the models do the following steps:
 
 1. To run all of the ML Classifiers except Neural Network, run notebooks/{classifierName}.ipynb
-i.e., notebooks/SVM.ipynb, notebooks/RandomForest.ipynb
+i.e., notebooks/LogisticRegression.ipynb, notebooks/KNearestNeighbour.ipynb, notebooks/Decision_tree.ipynb, notebooks/SVM.ipynb, notebooks/RandomForest.ipynb, notebooks/AdaBoost.ipynb
 2. To run the neural Neural Network model, run notebooks/NeuralNetwork/NN_analysis.ipynb
