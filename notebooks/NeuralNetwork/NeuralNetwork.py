@@ -6,15 +6,9 @@ import numpy as np
 from sklearn.metrics import accuracy_score, accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
 from sklearn.preprocessing import label_binarize
 from model import NeuralNetwork
-# from dynamic_model import dynamicNeuralNetwork
 
 import warnings
 warnings.filterwarnings("ignore")
-
-# def init_weights(m):
-#     if isinstance(m, nn.Linear):
-#         torch.nn.init.xavier_uniform_(m.weight) # Glorot
-#         m.bias.data.fill_(0.01)
 
 def evaluate_model(model, loader, criterion):
     model.eval()  # Set the model to evaluation mode
@@ -58,8 +52,6 @@ def runNeuralNetwork(hidden_size=128, learning_rate=0.001, init_type='xavier_uni
 
     batch_size = 64    
     num_epochs = 100
-
-    # print('batch_size', batch_size)
 
     train_X = torch.tensor(train_X, dtype=torch.float32)
     train_y = torch.tensor(train_y, dtype=torch.long)
