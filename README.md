@@ -1,6 +1,6 @@
 In this project, we implement six models, Logistic Regression, K Nearest Neighbor (KNN), Decision Tree, (Support Vector Machine) SVM, Random Forest, and Adaboost. To train our model, we use 2 different dataset. The dataset can be found inside the "dataset" folder.
 
-We also implement a Neural Network model which can be found inside "notebooks/NeuralNetwork/NeuralNetwork.py". The analysis is done in "notebooks/NeuralNetwork/NN_analysis.ipynb" We use popular MNIST dataset to train and test our model.
+We also implement a Neural Network model using PyTorch which can be found inside "notebooks/NeuralNetwork/NeuralNetwork.py". The analysis is done in "notebooks/NeuralNetwork/NN_analysis.ipynb" We use popular MNIST dataset to train and test our model.
 
 As the bonus task, we implemented an AutoEncoder to detech Fraudulent Handwritten Signatures.
 
